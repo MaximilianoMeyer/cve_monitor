@@ -1,9 +1,6 @@
-# cve_monitor
-Monitor de CVEs para se manter atualizado 
-
 # CVE Monitor
 
-Um monitor de CVEs (Common Vulnerabilities and Exposures) que envia notificações via Telegram sobre novas vulnerabilidades publicadas no National Vulnerability Database (NVD).
+Um monitor de CVEs (Common Vulnerabilities and Exposures) que envia notificações via Telegram sobre novas vulnerabilidades publicadas no National Vulnerability Database (NVD), uma forma de se manter atualizado.
 
 ## Características
 
@@ -24,7 +21,7 @@ Um monitor de CVEs (Common Vulnerabilities and Exposures) que envia notificaçõ
 
 1. Clone o repositório:
 ```
-git clone https://github.com/seu-usuario/cve-monitor.git
+git clone https://github.com/MaximilianoMeyer/cve-monitor.git
 cd cve-monitor
 ```
 
