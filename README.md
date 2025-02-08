@@ -36,6 +36,10 @@ TELEGRAM_TOKEN=seu_token_do_telegram
 TELEGRAM_CHAT_ID=seu_chat_id
 CHECK_INTERVAL=3600  # opcional, padrão: 3600 segundos (1 hora)
 MESSAGE_DELAY=2      # opcional, padrão: 2 segundos
+GITHUB_TOKEN=GITHUB_TOKEN # Para buscas por exploits públicos
+YOUTUBE_API_KEYYOUTUBE_API_KEY
+YOUTUBE_CHANNEL_ID=CHANNEL_ID
+
 ```
 
 ## Uso
