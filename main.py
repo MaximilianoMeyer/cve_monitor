@@ -1,4 +1,3 @@
-# main.py
 import time
 import logging
 from threading import Thread
@@ -11,7 +10,7 @@ def run_youtube_monitor(monitor):
     while True:
         try:
             monitor.check_and_notify()
-            time.sleep(monitor.check_interval)
+            time.sleep(300)  # Define um tempo de espera entre verificações
         except Exception as e:
             logging.error(f"Erro no monitor do YouTube: {e}")
             time.sleep(60)
@@ -45,22 +44,23 @@ def main():
         check_interval=config['check_interval'],
         message_delay=config['message_delay']
     )
-    
-    # Inicia o monitor do YouTube se as credenciais estiverem disponíveis
-    youtube_monitor = None
-    if config['youtube_api_key'] and config['youtube_channel_id']:
-        youtube_monitor = YouTubeMonitor(
-            config['youtube_api_key'],
-            config['youtube_channel_id'],
-            config['telegram_token'],
-            config['chat_id'],
-            config['message_thread_id']
-        )
-    
+
     # Inicia as threads
     Thread(target=cve_monitor.run).start()
-    if youtube_monitor:
-        Thread(target=run_youtube_monitor, args=(youtube_monitor,)).start()
+
+    # Criar monitores para múltiplos canais do YouTube
+    youtube_api_key = config["youtube_api_key"]
+    telegram_token = config["telegram_token"]
+    chat_id = config["chat_id"]
+    message_thread_id = int(config["message_thread_id"])  # Certifica-se de que é int
+
+    for channel_id in config["youtube_channel_ids"]:
+        channel_id = channel_id.strip()  # Remove espaços extras
+        if channel_id:  # Evita IDs vazios
+            youtube_monitor = YouTubeMonitor(
+                youtube_api_key, channel_id, telegram_token, chat_id, message_thread_id
+            )
+            Thread(target=run_youtube_monitor, args=(youtube_monitor,)).start()
 
 if __name__ == "__main__":
     main()
