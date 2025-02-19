@@ -9,6 +9,7 @@ def load_config():
         'telegram_token': os.getenv('TELEGRAM_TOKEN'),
         'chat_id': os.getenv('TELEGRAM_CHAT_ID'),
         'message_thread_id': os.getenv('TELEGRAM_MESSAGE_THREAD_ID', "0"),
+	'TELEGRAM_YOUTUBE_THREAD_ID': os.getenv('TELEGRAM_YOUTUBE_THREAD_ID', "0"),
         'github_token': os.getenv('GITHUB_TOKEN'),
         'youtube_api_key': os.getenv('YOUTUBE_API_KEY'),
         "youtube_channel_ids": [ch.strip() for ch in os.getenv("YOUTUBE_CHANNEL_IDS", "").split(",") if ch.strip()],  # Lista de canais limpa
@@ -16,7 +17,7 @@ def load_config():
         'message_delay': int(os.getenv('MESSAGE_DELAY', '2'))
     }
     
-    required = ['telegram_token', 'chat_id', 'message_thread_id']
+    required = ['telegram_token', 'chat_id', 'message_thread_id', 'TELEGRAM_YOUTUBE_THREAD_ID']
     missing = [key for key in required if not config[key]]
     
     if missing:

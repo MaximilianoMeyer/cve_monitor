@@ -3,12 +3,13 @@ import logging
 from typing import Optional, Tuple
 
 class YouTubeMonitor:
-    def __init__(self, api_key: str, channel_id: str, telegram_token: str, chat_id: str, message_thread_id: int):
+    def __init__(self, api_key: str, channel_id: str, telegram_token: str, chat_id: str, TELEGRAM_YOUTUBE_THREAD_ID: int):
         self.api_key = api_key
         self.channel_id = channel_id  # Apenas um canal por instância
         self.telegram_api_url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         self.chat_id = chat_id
-        self.message_thread_id = message_thread_id
+        #self.message_thread_id = message_thread_id
+        self.TELEGRAM_YOUTUBE_THREAD_ID = TELEGRAM_YOUTUBE_THREAD_ID
         self.logger = logging.getLogger(__name__)
         self.last_video_id = None  # Mantém controle do último vídeo enviado
 
@@ -45,7 +46,8 @@ class YouTubeMonitor:
         try:
             payload = {
                 'chat_id': self.chat_id,
-                'message_thread_id': self.message_thread_id,
+		'message_thread_id': self.TELEGRAM_YOUTUBE_THREAD_ID,
+                #'message_thread_id': self.message_thread_id,
                 'text': message,
                 'parse_mode': 'HTML'
             }

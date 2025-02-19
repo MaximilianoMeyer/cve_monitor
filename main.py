@@ -52,13 +52,14 @@ def main():
     youtube_api_key = config["youtube_api_key"]
     telegram_token = config["telegram_token"]
     chat_id = config["chat_id"]
-    message_thread_id = int(config["message_thread_id"])  # Certifica-se de que é int
+    #message_thread_id = int(config["message_thread_id"])  # Certifica-se de que é int
+    TELEGRAM_YOUTUBE_THREAD_ID = int(config["TELEGRAM_YOUTUBE_THREAD_ID"])
 
     for channel_id in config["youtube_channel_ids"]:
         channel_id = channel_id.strip()  # Remove espaços extras
         if channel_id:  # Evita IDs vazios
             youtube_monitor = YouTubeMonitor(
-                youtube_api_key, channel_id, telegram_token, chat_id, message_thread_id
+                youtube_api_key, channel_id, telegram_token, chat_id, TELEGRAM_YOUTUBE_THREAD_ID
             )
             Thread(target=run_youtube_monitor, args=(youtube_monitor,)).start()
 
